@@ -1,164 +1,434 @@
-<style>
-/* ================================
-   H.O. JEWELLERS - TODAY'S RATES
-   ================================ */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
-#rateBox {
-    width: min(92%, 600px);
-    margin: 40px auto;
-    padding: 28px;
-    box-sizing: border-box;
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    background: linear-gradient(
-        145deg,
-        #fffdf5,
-        #fff8dc,
-        #f7e7a8
-    );
+    <title>H.O. JEWELLERS | Today's Rates</title>
 
-    border: 1px solid rgba(190, 145, 35, 0.45);
-    border-radius: 22px;
+    <style>
 
-    box-shadow:
-        0 15px 40px rgba(80, 55, 10, 0.18),
-        inset 0 1px 0 rgba(255,255,255,0.9);
+        /* =========================
+           BASIC PAGE
+           ========================= */
 
-    font-family: Arial, Helvetica, sans-serif;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-/* Heading */
-#rateBox h2 {
-    margin: 0 0 22px 0;
-    text-align: center;
+        body {
+            min-height: 100vh;
 
-    font-size: 28px;
-    font-weight: 800;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
 
-    color: #7a5700;
+            background:
+                radial-gradient(
+                    circle at top,
+                    #fff9df 0%,
+                    #f7e8b0 35%,
+                    #ead18a 100%
+                );
 
-    letter-spacing: 0.5px;
-}
+            color: #3f2d00;
 
-/* Individual rate */
-#rateBox .rate {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-    gap: 10px;
-
-    margin: 10px 0;
-    padding: 15px 17px;
-
-    background: rgba(255,255,255,0.72);
-
-    border-radius: 14px;
-    border: 1px solid rgba(190,145,35,0.25);
-
-    color: #493600;
-    font-size: 16px;
-
-    box-shadow: 0 4px 12px rgba(90,60,0,0.08);
-
-    transition: all 0.25s ease;
-}
-
-/* Hover effect */
-#rateBox .rate:hover {
-    transform: translateY(-2px);
-
-    background: rgba(255,255,255,0.95);
-
-    box-shadow: 0 7px 18px rgba(90,60,0,0.15);
-}
-
-/* Price */
-#rateBox .price {
-    margin-left: auto;
-
-    color: #8b6200;
-
-    font-size: 19px;
-    font-weight: 800;
-
-    white-space: nowrap;
-}
-
-/* Unit */
-#rateBox .unit {
-    color: #77683e;
-    font-size: 14px;
-}
-
-/* Gold icon */
-.gold-icon {
-    color: #d6a500;
-}
-
-/* Silver icon */
-.silver-icon {
-    color: #8b8b8b;
-}
-
-/* Mobile */
-@media (max-width: 600px) {
-
-    #rateBox {
-        width: 94%;
-        margin: 25px auto;
-        padding: 20px 15px;
-        border-radius: 18px;
-    }
-
-    #rateBox h2 {
-        font-size: 24px;
-        margin-bottom: 17px;
-    }
-
-    #rateBox .rate {
-        padding: 13px 12px;
-        font-size: 14px;
-        border-radius: 12px;
-    }
-
-    #rateBox .price {
-        font-size: 16px;
-    }
-
-    #rateBox .unit {
-        font-size: 12px;
-    }
-}
-</style>
+            padding: 25px;
+        }
 
 
-<div id="rateBox" class="box">
+        /* =========================
+           MAIN CONTAINER
+           ========================= */
 
-    <h2>Today's Rates</h2>
+        .container {
+            width: 100%;
+            max-width: 650px;
+        }
 
-    <div class="rate">
-        <span>🟡 Gold 24K</span>
-        <span class="price">₹162730 <span class="unit">/10g</span></span>
+
+        /* =========================
+           BRAND
+           ========================= */
+
+        .brand {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .brand h1 {
+            font-size: 34px;
+            font-weight: 900;
+
+            letter-spacing: 3px;
+
+            color: #8a6200;
+
+            text-shadow:
+                0 2px 8px rgba(120, 80, 0, 0.18);
+        }
+
+        .brand p {
+            margin-top: 7px;
+
+            font-size: 14px;
+
+            letter-spacing: 2px;
+
+            color: #725d25;
+        }
+
+
+        /* =========================
+           RATE CARD
+           ========================= */
+
+        #rateBox {
+
+            width: 100%;
+
+            padding: 30px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.95),
+                    rgba(255,248,215,0.95)
+                );
+
+            border:
+                1px solid rgba(180,135,25,0.45);
+
+            box-shadow:
+
+                0 20px 50px
+                rgba(73, 51, 0, 0.22),
+
+                inset 0 1px 0
+                rgba(255,255,255,0.9);
+        }
+
+
+        /* =========================
+           TITLE
+           ========================= */
+
+        #rateBox h2 {
+
+            text-align: center;
+
+            font-size: 27px;
+
+            margin-bottom: 24px;
+
+            color: #765300;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================
+           RATE ROW
+           ========================= */
+
+        .rate {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            width: 100%;
+
+            padding: 17px 18px;
+
+            margin-bottom: 12px;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #fffaf0
+                );
+
+            border:
+                1px solid
+                rgba(190,145,35,0.25);
+
+            box-shadow:
+                0 5px 15px
+                rgba(90,60,0,0.08);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .rate:last-child {
+            margin-bottom: 0;
+        }
+
+
+        /* =========================
+           HOVER
+           ========================= */
+
+        .rate:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 9px 22px
+                rgba(90,60,0,0.16);
+        }
+
+
+        /* =========================
+           METAL NAME
+           ========================= */
+
+        .metal {
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            color: #493600;
+        }
+
+
+        /* =========================
+           PRICE
+           ========================= */
+
+        .price {
+
+            font-size: 19px;
+
+            font-weight: 900;
+
+            color: #916600;
+
+            white-space: nowrap;
+        }
+
+
+        /* =========================
+           UNIT
+           ========================= */
+
+        .unit {
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            color: #806f42;
+        }
+
+
+        /* =========================
+           FOOTER
+           ========================= */
+
+        .footer {
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            font-size: 12px;
+
+            color: #766638;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        /* =========================
+           MOBILE
+           ========================= */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .brand h1 {
+                font-size: 27px;
+                letter-spacing: 2px;
+            }
+
+            .brand p {
+                font-size: 11px;
+            }
+
+            #rateBox {
+                padding: 20px 14px;
+                border-radius: 20px;
+            }
+
+            #rateBox h2 {
+                font-size: 23px;
+                margin-bottom: 18px;
+            }
+
+            .rate {
+                padding: 14px 12px;
+            }
+
+            .metal {
+                font-size: 14px;
+            }
+
+            .price {
+                font-size: 16px;
+            }
+
+            .unit {
+                font-size: 11px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <div class="container">
+
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <h1>H.O. JEWELLERS</h1>
+
+            <p>TRUST • PURITY • ELEGANCE</p>
+
+        </div>
+
+
+
+        <!-- TODAY'S RATES -->
+
+        <div id="rateBox">
+
+            <h2>Today's Rates</h2>
+
+
+            <!-- 24K -->
+
+            <div class="rate">
+
+                <span class="metal">
+                    🟡 Gold 24K
+                </span>
+
+                <span class="price">
+                    ₹162730
+                    <span class="unit">/10g</span>
+                </span>
+
+            </div>
+
+
+            <!-- 22K -->
+
+            <div class="rate">
+
+                <span class="metal">
+                    🟡 Gold 22K
+                </span>
+
+                <span class="price">
+                    ₹149060
+                    <span class="unit">/10g</span>
+                </span>
+
+            </div>
+
+
+            <!-- 18K -->
+
+            <div class="rate">
+
+                <span class="metal">
+                    🟡 Gold 18K
+                </span>
+
+                <span class="price">
+                    ₹122047
+                    <span class="unit">/10g</span>
+                </span>
+
+            </div>
+
+
+            <!-- 14K -->
+
+            <div class="rate">
+
+                <span class="metal">
+                    🟡 Gold 14K
+                </span>
+
+                <span class="price">
+                    ₹95197
+                    <span class="unit">/10g</span>
+                </span>
+
+            </div>
+
+
+            <!-- SILVER -->
+
+            <div class="rate">
+
+                <span class="metal">
+                    ⚪ Fine Silver
+                </span>
+
+                <span class="price">
+                    ₹2474
+                    <span class="unit">/10g</span>
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            Today's rates • H.O. JEWELLERS
+
+        </div>
+
+
     </div>
 
-    <div class="rate">
-        <span>🟡 Gold 22K</span>
-        <span class="price">₹149060 <span class="unit">/10g</span></span>
-    </div>
-
-    <div class="rate">
-        <span>🟡 Gold 18K</span>
-        <span class="price">₹122047 <span class="unit">/10g</span></span>
-    </div>
-
-    <div class="rate">
-        <span>🟡 Gold 14K</span>
-        <span class="price">₹95197 <span class="unit">/10g</span></span>
-    </div>
-
-    <div class="rate">
-        <span>⚪ Fine Silver</span>
-        <span class="price">₹2474 <span class="unit">/10g</span></span>
-    </div>
-
-</div>
+</body>
+</html>
