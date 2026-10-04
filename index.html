@@ -1,434 +1,709 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification"
+        content="MgciKVURAI2xJj9HDIYwL5BOIHuB3nq0EiSNCDJW-vA" />
 
-    <title>H.O. JEWELLERS | Today's Rates</title>
+    <title>H.O. Jewellers</title>
+
+    <!-- Official WhatsApp + Phone icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
-
-        /* =========================
-           BASIC PAGE
-           ========================= */
+        :root {
+            --ink: #171614;
+            --ink-soft: #3d3932;
+            --paper: #f6f0e5;
+            --paper-deep: #ebe0cc;
+            --gold: #b88a36;
+            --gold-light: #d7b66d;
+            --line: rgba(184, 138, 54, 0.32);
+            --white: #fffdf8;
+            --shadow: 0 24px 70px rgba(42, 30, 12, 0.14);
+        }
 
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         body {
             min-height: 100vh;
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
+            margin: 0;
+            padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+            overflow-x: hidden;
             background:
-                radial-gradient(
-                    circle at top,
-                    #fff9df 0%,
-                    #f7e8b0 35%,
-                    #ead18a 100%
-                );
-
-            color: #3f2d00;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            padding: 25px;
+                radial-gradient(circle at 8% 8%, rgba(215, 182, 109, 0.24), transparent 26rem),
+                radial-gradient(circle at 92% 42%, rgba(184, 138, 54, 0.12), transparent 24rem),
+                var(--paper);
+            color: var(--ink);
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
         }
 
+        body.intro-active {
+            overflow: hidden;
+        }
 
-        /* =========================
+        /* =========================================
+           INTRO VIDEO
+           ========================================= */
+
+        .mobile-intro {
+            position: fixed;
+            z-index: 10000;
+            inset: 0;
+            display: grid;
+            overflow: hidden;
+            place-items: center;
+            background: var(--ink);
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.65s ease, visibility 0.65s ease;
+        }
+
+        .mobile-intro::after {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(12, 11, 9, 0.1), rgba(12, 11, 9, 0.46)),
+                linear-gradient(90deg, rgba(215, 182, 109, 0.08), transparent 48%, rgba(215, 182, 109, 0.12));
+            content: "";
+            pointer-events: none;
+        }
+
+        .intro-video {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1b1813, #5b4525 48%, #15130f);
+            object-fit: cover;
+        }
+
+        .site-shell {
+            min-height: 100vh;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.65s ease, visibility 0.65s ease;
+        }
+
+        body.intro-active .site-shell {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        body.intro-complete .mobile-intro {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        body.intro-complete .site-shell {
+            animation: interface-in 0.7s ease both;
+        }
+
+        /* =========================================
+           HEADER
+           ========================================= */
+
+        header {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: clamp(40px, 7vw, 78px) 20px clamp(42px, 7vw, 76px);
+            color: var(--white);
+            background:
+                linear-gradient(135deg, rgba(23, 22, 20, 0.98), rgba(45, 35, 21, 0.96)),
+                var(--ink);
+            text-align: left;
+        }
+
+        header::before,
+        header::after {
+            position: absolute;
+            z-index: -1;
+            border: 1px solid rgba(215, 182, 109, 0.36);
+            border-radius: 50%;
+            content: "";
+            pointer-events: none;
+        }
+
+        header::before {
+            width: 25rem;
+            height: 25rem;
+            top: -17rem;
+            right: -5rem;
+        }
+
+        header::after {
+            width: 16rem;
+            height: 16rem;
+            bottom: -12rem;
+            left: -5rem;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: min(100%, 760px);
+            margin: 0 auto;
+        }
+
+        .brand-copy {
+            min-width: 0;
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--white);
+            font: 600 clamp(30px, 7vw, 58px)/1.04 Georgia, "Times New Roman", serif;
+            letter-spacing: 0.08em;
+        }
+
+        header p {
+            margin: 15px 0 0;
+            color: var(--gold-light);
+            font-size: clamp(15px, 3.2vw, 20px);
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        /* =========================================
            MAIN CONTAINER
-           ========================= */
+           ========================================= */
+
+        main {
+            padding: 0 15px;
+        }
 
         .container {
+            position: relative;
+            width: min(100%, 660px);
+            margin: clamp(30px, 6vw, 62px) auto 38px;
+            padding: clamp(28px, 5vw, 46px) clamp(20px, 5vw, 38px);
+            border: 1px solid rgba(184, 138, 54, 0.2);
+            border-radius: 28px;
+            background: rgba(255, 253, 248, 0.88);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+        }
+
+        .container::before {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 78px;
+            height: 3px;
+            border-radius: 0 0 5px 5px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            content: "";
+            transform: translateX(-50%);
+        }
+
+        .container > a,
+        .container > button {
+            display: block;
             width: 100%;
-            max-width: 650px;
         }
 
-
-        /* =========================
-           BRAND
-           ========================= */
-
-        .brand {
-            text-align: center;
-            margin-bottom: 22px;
+        button {
+            position: relative;
+            display: block;
+            width: 100%;
+            margin: 16px auto;
+            padding: 19px 52px 19px 22px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 13px;
+            color: var(--white);
+            background: linear-gradient(110deg, #a97927, #c69a48 55%, #a8792a);
+            box-shadow: 0 10px 20px rgba(115, 78, 18, 0.17);
+            cursor: pointer;
+            font: 700 17px/1.2 Arial, Helvetica, sans-serif;
+            letter-spacing: 0.04em;
+            transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
         }
 
-        .brand h1 {
-            font-size: 34px;
-            font-weight: 900;
-
-            letter-spacing: 3px;
-
-            color: #8a6200;
-
-            text-shadow:
-                0 2px 8px rgba(120, 80, 0, 0.18);
+        button::after {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            color: rgba(255, 255, 255, 0.84);
+            content: "↗";
+            font-size: 20px;
+            font-weight: 400;
+            transform: translateY(-54%);
+            transition: transform 0.25s ease;
         }
 
-        .brand p {
-            margin-top: 7px;
+        button:hover {
+            background: linear-gradient(110deg, #94671e, #b48636 55%, #95691e);
+            box-shadow: 0 14px 25px rgba(115, 78, 18, 0.24);
+            transform: translateY(-2px);
+        }
 
+        button:hover::after {
+            transform: translate(3px, -54%);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 3px solid rgba(184, 138, 54, 0.48);
+            outline-offset: 4px;
+        }
+
+        /* =========================================
+           CONTACT MESSAGE
+           ========================================= */
+
+        #orderMessage {
+            display: none;
+            margin: 22px auto;
+            padding: 21px 18px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            color: var(--ink-soft);
+            background: linear-gradient(135deg, #fffaf0, #f5ead3);
+            font-size: 17px;
+            line-height: 1.85;
+            overflow-wrap: anywhere;
+        }
+
+        #orderMessage strong {
+            color: var(--ink);
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        .order-link {
+            color: #93681e;
+            font-weight: bold;
+        }
+
+        .order-link:hover {
+            text-decoration: underline;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* =========================================
+           OFFLINE STORE
+           ========================================= */
+
+        .store-info {
+            width: min(100% - 30px, 660px);
+            margin: 35px auto 48px;
+            padding: 27px 18px;
+            color: var(--ink-soft);
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .store-info strong {
+            color: var(--ink);
+            font: 600 23px/1.35 Georgia, "Times New Roman", serif;
+        }
+
+        .store-info a {
+            color: #93681e;
+            font-weight: bold;
+        }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+
+        footer {
+            margin-top: 30px;
+            padding: 28px 15px;
+            color: rgba(255, 253, 248, 0.78);
+            background: var(--ink);
             font-size: 14px;
-
-            letter-spacing: 2px;
-
-            color: #725d25;
+            letter-spacing: 0.04em;
         }
 
+        /* =========================================
+           FLOATING CONTACT BUTTONS
+           ========================================= */
 
-        /* =========================
-           RATE CARD
-           ========================= */
-
-        #rateBox {
-
-            width: 100%;
-
-            padding: 30px;
-
-            border-radius: 25px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,0.95),
-                    rgba(255,248,215,0.95)
-                );
-
-            border:
-                1px solid rgba(180,135,25,0.45);
-
-            box-shadow:
-
-                0 20px 50px
-                rgba(73, 51, 0, 0.22),
-
-                inset 0 1px 0
-                rgba(255,255,255,0.9);
-        }
-
-
-        /* =========================
-           TITLE
-           ========================= */
-
-        #rateBox h2 {
-
-            text-align: center;
-
-            font-size: 27px;
-
-            margin-bottom: 24px;
-
-            color: #765300;
-
-            font-weight: 800;
-
-            letter-spacing: 1px;
-        }
-
-
-        /* =========================
-           RATE ROW
-           ========================= */
-
-        .rate {
-
+        .floating-actions {
+            position: fixed;
+            right: 20px;
+            bottom: calc(24px + env(safe-area-inset-bottom));
+            z-index: 9999;
             display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 14px;
+            pointer-events: none;
+        }
 
+        .floating-btn {
+            display: flex;
+            width: 58px;
+            height: 58px;
             align-items: center;
-
-            justify-content: space-between;
-
-            width: 100%;
-
-            padding: 17px 18px;
-
-            margin-bottom: 12px;
-
-            border-radius: 15px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #ffffff,
-                    #fffaf0
-                );
-
-            border:
-                1px solid
-                rgba(190,145,35,0.25);
-
-            box-shadow:
-                0 5px 15px
-                rgba(90,60,0,0.08);
-
-            transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            font-size: 27px;
+            text-decoration: none;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+            pointer-events: auto;
         }
 
-        .rate:last-child {
-            margin-bottom: 0;
+        .floating-btn:hover {
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+            transform: translateY(-4px) scale(1.06);
         }
 
-
-        /* =========================
-           HOVER
-           ========================= */
-
-        .rate:hover {
-
-            transform:
-                translateY(-3px);
-
-            box-shadow:
-                0 9px 22px
-                rgba(90,60,0,0.16);
+        .floating-btn:active {
+            transform: scale(0.92);
         }
 
-
-        /* =========================
-           METAL NAME
-           ========================= */
-
-        .metal {
-
-            font-size: 16px;
-
-            font-weight: 600;
-
-            color: #493600;
+        .whatsapp-btn {
+            background-color: #25D366;
         }
 
+        .call-btn {
+            background-color: var(--gold);
+        }
 
-        /* =========================
-           PRICE
-           ========================= */
+        .floating-btn i {
+            line-height: 1;
+        }
 
-        .price {
-
-            font-size: 19px;
-
-            font-weight: 900;
-
-            color: #916600;
-
+        .floating-btn::after {
+            position: absolute;
+            right: 72px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            color: white;
+            background: var(--ink);
+            content: attr(data-label);
+            font-size: 13px;
+            font-weight: bold;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(8px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
             white-space: nowrap;
         }
 
-
-        /* =========================
-           UNIT
-           ========================= */
-
-        .unit {
-
-            font-size: 13px;
-
-            font-weight: 500;
-
-            color: #806f42;
+        .floating-btn:hover::after {
+            opacity: 1;
+            transform: translateX(0);
         }
 
+        /* =========================================
+           RESPONSIVE BEHAVIOUR
+           ========================================= */
 
-        /* =========================
-           FOOTER
-           ========================= */
-
-        .footer {
-
-            text-align: center;
-
-            margin-top: 18px;
-
-            font-size: 12px;
-
-            color: #766638;
-
-            letter-spacing: 0.5px;
-        }
-
-
-        /* =========================
-           MOBILE
-           ========================= */
-
-        @media (max-width: 600px) {
-
-            body {
-                padding: 15px;
+        @media (max-width: 767px) {
+            header {
+                padding: 34px 18px 39px;
+                text-align: center;
             }
 
-            .brand h1 {
-                font-size: 27px;
-                letter-spacing: 2px;
+            .header-inner {
+                flex-direction: column;
+                gap: 18px;
             }
 
-            .brand p {
-                font-size: 11px;
+            h1 {
+                font-size: clamp(28px, 8vw, 42px);
+                letter-spacing: 0.06em;
             }
 
-            #rateBox {
-                padding: 20px 14px;
-                border-radius: 20px;
+            header p {
+                margin-top: 12px;
+                font-size: clamp(13px, 3.8vw, 17px);
+                letter-spacing: 0.14em;
             }
 
-            #rateBox h2 {
-                font-size: 23px;
-                margin-bottom: 18px;
+            main {
+                padding: 0 10px;
             }
 
-            .rate {
-                padding: 14px 12px;
+            .container {
+                margin: 28px auto 30px;
+                border-radius: 23px;
             }
 
-            .metal {
-                font-size: 14px;
+            button {
+                margin: 14px auto;
+                padding: 18px 48px 18px 17px;
+                font-size: 17px;
             }
 
-            .price {
+            #orderMessage {
+                padding: 18px 13px;
                 font-size: 16px;
             }
 
-            .unit {
-                font-size: 11px;
+            .store-info {
+                width: calc(100% - 30px);
+                margin: 28px auto 40px;
+                padding: 25px 12px;
+                font-size: 17px;
+            }
+
+            .store-info strong {
+                font-size: 21px;
+            }
+
+            .floating-actions {
+                right: 16px;
+                bottom: calc(24px + env(safe-area-inset-bottom));
+                gap: 12px;
+            }
+
+            .floating-btn {
+                width: 54px;
+                height: 54px;
+                font-size: 25px;
+            }
+
+            .floating-btn::after {
+                display: none;
+            }
+
+            footer {
+                padding: 25px 15px;
             }
         }
 
+        @media (max-width: 380px) {
+            .container {
+                width: calc(100% - 10px);
+                padding: 25px 15px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+
+            .store-info {
+                font-size: 16px;
+            }
+
+            .floating-actions {
+                right: 12px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .site-shell {
+                animation: interface-in 0.7s ease both;
+            }
+        }
+
+        @keyframes interface-in {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 
+<body class="intro-active">
 
-<body>
-
-    <div class="container">
-
-
-        <!-- BRAND -->
-
-        <div class="brand">
-
-            <h1>H.O. JEWELLERS</h1>
-
-            <p>TRUST • PURITY • ELEGANCE</p>
-
-        </div>
-
-
-
-        <!-- TODAY'S RATES -->
-
-        <div id="rateBox">
-
-            <h2>Today's Rates</h2>
-
-
-            <!-- 24K -->
-
-            <div class="rate">
-
-                <span class="metal">
-                    🟡 Gold 24K
-                </span>
-
-                <span class="price">
-                    ₹149345
-                    <span class="unit">/10g</span>
-                </span>
-
-            </div>
-
-
-            <!-- 22K -->
-
-            <div class="rate">
-
-                <span class="metal">
-                    🟡 Gold 22K
-                </span>
-
-                <span class="price">
-                    ₹136800
-                    <span class="unit">/10g</span>
-                </span>
-
-            </div>
-
-
-            <!-- 18K -->
-
-            <div class="rate">
-
-                <span class="metal">
-                    🟡 Gold 18K
-                </span>
-
-                <span class="price">
-                    ₹112008
-                    <span class="unit">/10g</span>
-                </span>
-
-            </div>
-
-
-            <!-- 14K -->
-
-            <div class="rate">
-
-                <span class="metal">
-                    🟡 Gold 14K
-                </span>
-
-                <span class="price">
-                    ₹87366
-                    <span class="unit">/10g</span>
-                </span>
-
-            </div>
-
-
-            <!-- SILVER -->
-
-            <div class="rate">
-
-                <span class="metal">
-                    ⚪ Fine Silver
-                </span>
-
-                <span class="price">
-                    ₹2240
-                    <span class="unit">/10g</span>
-                </span>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- FOOTER -->
-
-        <div class="footer">
-
-            Today's rates • H.O. JEWELLERS
-
-        </div>
-
-
+    <!-- Intro video. Place your video at intro-video.mp4 beside this file. -->
+    <div class="mobile-intro" id="mobileIntro" aria-hidden="true">
+        <video class="intro-video" id="introVideo" muted playsinline preload="metadata">
+            <source src="hointro.mp4" type="video/mp4">
+        </video>
     </div>
 
+    <div class="site-shell">
+        <!-- Header -->
+        <header>
+            <div class="header-inner">
+                <div class="brand-copy">
+                    <h1>H.O. JEWELLERS</h1>
+                    <p>Jewellery • Gold • Silver</p>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Main Container -->
+            <div class="container">
+
+                <!-- Current Rates -->
+                <a href="https://hojewellersltd.github.io/Rates/">
+                    <button>
+                        Current Rates
+                    </button>
+                </a>
+
+                <!-- Products -->
+                <a href="https://hojewellersltd.github.io/Products/">
+                    <button>
+                        Products
+                    </button>
+                </a>
+
+                <!-- Contact Us -->
+                <button onclick="showOrder()">
+                    Contact Us
+                </button>
+
+                <!-- Contact Message -->
+                <div id="orderMessage">
+                    <strong>Contact us at:</strong>
+                    <br>
+                    +91 9798762719
+                    <br><br>
+                    <strong>Mail us at:</strong>
+                    <br>
+                    nishantburman61@gmail.com
+                    <br><br>
+                    <strong>WhatsApp Chat:</strong>
+                    <br>
+                    <a class="order-link"
+                        href="https://wa.me/message/TTTRR6SQLQDQF1"
+                        target="_blank"
+                        rel="noopener">
+                        Chat on WhatsApp
+                    </a>
+                </div>
+
+                <!-- About Us -->
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScWa1f2xkvY7ZIMOlZ3C9_flqlxsmN_KiRiZjDSsFTtVFSO0g/viewform?usp=publish-editor"
+                    target="_blank"
+                    rel="noopener">
+                    <button>
+                        About Us
+                    </button>
+                </a>
+
+            </div>
+        </main>
+
+        <!-- Offline Store Information -->
+        <div class="store-info">
+            <strong>For more clarity, visit our offline store at:</strong>
+            <br><br>
+            Main Road, Near Bank Of Baroda, Gola, Ramgarh
+            <br>
+            Jharkhand 829110
+            <p>
+                Download Android App?
+                <br>
+                <a href="https://hojewellersltd.github.io/APKdownload/"
+                    target="_blank"
+                    rel="noopener">
+                    click Here
+                </a>.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            &copy; 2026 H.O. Jewellers, All Rights Reserved.
+        </footer>
+
+        <!-- Floating WhatsApp + Call Buttons -->
+        <div class="floating-actions">
+
+            <!-- WhatsApp -->
+            <a class="floating-btn whatsapp-btn"
+                href="https://wa.me/message/TTTRR6SQLQDQF1"
+                target="_blank"
+                rel="noopener"
+                aria-label="Chat on WhatsApp"
+                data-label="Chat on WhatsApp">
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            </a>
+
+            <!-- Android Dialer -->
+            <a class="floating-btn call-btn"
+                href="tel:+919798762719"
+                aria-label="Call H.O. Jewellers"
+                data-label="Call us">
+                <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            </a>
+
+        </div>
+    </div>
+
+    <script>
+        function showOrder() {
+            const message = document.getElementById("orderMessage");
+
+            if (message.style.display === "block") {
+                message.style.display = "none";
+            } else {
+                message.style.display = "block";
+            }
+        }
+
+        (function initialiseIntroVideo() {
+            const mobileIntro = document.getElementById("mobileIntro");
+            const introVideo = document.getElementById("introVideo");
+            let fallbackTimer;
+
+            function openMainInterface() {
+                window.clearTimeout(fallbackTimer);
+                document.body.classList.remove("intro-active");
+                document.body.classList.add("intro-complete");
+                mobileIntro.setAttribute("aria-hidden", "true");
+            }
+
+            introVideo.addEventListener("ended", openMainInterface, { once: true });
+            introVideo.addEventListener("error", openMainInterface, { once: true });
+            introVideo.addEventListener("loadeddata", function () {
+                window.clearTimeout(fallbackTimer);
+            }, { once: true });
+
+            // If the video file is missing or the host cannot serve it, never trap the visitor on black.
+            fallbackTimer = window.setTimeout(openMainInterface, 4000);
+
+            const playRequest = introVideo.play();
+            if (playRequest && typeof playRequest.catch === "function") {
+                playRequest.catch(function () {
+                    // A blocked or unavailable video should fall back to the main interface.
+                    openMainInterface();
+                });
+            }
+        }());
+    </script>
+
 </body>
+
 </html>
