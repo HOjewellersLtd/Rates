@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <meta name="google-site-verification"
         content="MgciKVURAI2xJj9HDIYwL5BOIHuB3nq0EiSNCDJW-vA" />
@@ -15,17 +16,9 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
-        :root {
-            --ink: #171614;
-            --ink-soft: #3d3932;
-            --paper: #f6f0e5;
-            --paper-deep: #ebe0cc;
-            --gold: #b88a36;
-            --gold-light: #d7b66d;
-            --line: rgba(184, 138, 54, 0.32);
-            --white: #fffdf8;
-            --shadow: 0 24px 70px rgba(42, 30, 12, 0.14);
-        }
+        /* =========================================
+           RESET + MOBILE SAFE AREA
+           ========================================= */
 
         * {
             box-sizing: border-box;
@@ -37,78 +30,20 @@
         }
 
         body {
-            min-height: 100vh;
-            margin: 0;
-            padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
-            overflow-x: hidden;
-            background:
-                radial-gradient(circle at 8% 8%, rgba(215, 182, 109, 0.24), transparent 26rem),
-                radial-gradient(circle at 92% 42%, rgba(184, 138, 54, 0.12), transparent 24rem),
-                var(--paper);
-            color: var(--ink);
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Arial, sans-serif;
+            background-color: #f5f1e8;
             text-align: center;
-        }
+            margin: 0;
+            padding: 0;
 
-        body.intro-active {
-            overflow: hidden;
-        }
+            /* Prevent horizontal scrolling */
+            overflow-x: hidden;
 
-        /* =========================================
-           INTRO VIDEO
-           ========================================= */
+            /* Extra space for mobile system bars */
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
 
-        .mobile-intro {
-            position: fixed;
-            z-index: 10000;
-            inset: 0;
-            display: grid;
-            overflow: hidden;
-            place-items: center;
-            background: var(--ink);
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 0.65s ease, visibility 0.65s ease;
-        }
-
-        .mobile-intro::after {
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(180deg, rgba(12, 11, 9, 0.1), rgba(12, 11, 9, 0.46)),
-                linear-gradient(90deg, rgba(215, 182, 109, 0.08), transparent 48%, rgba(215, 182, 109, 0.12));
-            content: "";
-            pointer-events: none;
-        }
-
-        .intro-video {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #1b1813, #5b4525 48%, #15130f);
-            object-fit: cover;
-        }
-
-        .site-shell {
-            min-height: 100vh;
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 0.65s ease, visibility 0.65s ease;
-        }
-
-        body.intro-active .site-shell {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        body.intro-complete .mobile-intro {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        body.intro-complete .site-shell {
-            animation: interface-in 0.7s ease both;
+            color: #333;
         }
 
         /* =========================================
@@ -116,180 +51,88 @@
            ========================================= */
 
         header {
-            position: relative;
-            isolation: isolate;
-            overflow: hidden;
-            padding: clamp(40px, 7vw, 78px) 20px clamp(42px, 7vw, 76px);
-            color: var(--white);
-            background:
-                linear-gradient(135deg, rgba(23, 22, 20, 0.98), rgba(45, 35, 21, 0.96)),
-                var(--ink);
-            text-align: left;
-        }
-
-        header::before,
-        header::after {
-            position: absolute;
-            z-index: -1;
-            border: 1px solid rgba(215, 182, 109, 0.36);
-            border-radius: 50%;
-            content: "";
-            pointer-events: none;
-        }
-
-        header::before {
-            width: 25rem;
-            height: 25rem;
-            top: -17rem;
-            right: -5rem;
-        }
-
-        header::after {
-            width: 16rem;
-            height: 16rem;
-            bottom: -12rem;
-            left: -5rem;
-        }
-
-        .header-inner {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            width: min(100%, 760px);
-            margin: 0 auto;
-        }
-
-        .brand-copy {
-            min-width: 0;
+            background-color: #222;
+            color: white;
+            padding: 42px 15px 38px;
         }
 
         h1 {
             margin: 0;
-            color: var(--white);
-            font: 600 clamp(30px, 7vw, 58px)/1.04 Georgia, "Times New Roman", serif;
-            letter-spacing: 0.08em;
+            font-size: 40px;
+            line-height: 1.2;
         }
 
         header p {
-            margin: 15px 0 0;
-            color: var(--gold-light);
-            font-size: clamp(15px, 3.2vw, 20px);
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
+            margin: 28px 0 0;
+            font-size: 24px;
         }
 
         /* =========================================
            MAIN CONTAINER
            ========================================= */
 
-        main {
-            padding: 0 15px;
-        }
-
         .container {
-            position: relative;
-            width: min(100%, 660px);
-            margin: clamp(30px, 6vw, 62px) auto 38px;
-            padding: clamp(28px, 5vw, 46px) clamp(20px, 5vw, 38px);
-            border: 1px solid rgba(184, 138, 54, 0.2);
-            border-radius: 28px;
-            background: rgba(255, 253, 248, 0.88);
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(12px);
-        }
+            margin: 50px auto 35px;
+            max-width: 660px;
+            width: calc(100% - 30px);
 
-        .container::before {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 78px;
-            height: 3px;
-            border-radius: 0 0 5px 5px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            content: "";
-            transform: translateX(-50%);
-        }
+            background: white;
+            padding: 38px 30px;
 
-        .container > a,
-        .container > button {
-            display: block;
-            width: 100%;
+            border-radius: 26px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.18);
         }
 
         button {
-            position: relative;
             display: block;
             width: 100%;
-            margin: 16px auto;
-            padding: 19px 52px 19px 22px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            border-radius: 13px;
-            color: var(--white);
-            background: linear-gradient(110deg, #a97927, #c69a48 55%, #a8792a);
-            box-shadow: 0 10px 20px rgba(115, 78, 18, 0.17);
-            cursor: pointer;
-            font: 700 17px/1.2 Arial, Helvetica, sans-serif;
-            letter-spacing: 0.04em;
-            transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
-        }
+            margin: 20px auto;
+            padding: 18px 15px;
 
-        button::after {
-            position: absolute;
-            top: 50%;
-            right: 20px;
-            color: rgba(255, 255, 255, 0.84);
-            content: "↗";
             font-size: 20px;
-            font-weight: 400;
-            transform: translateY(-54%);
-            transition: transform 0.25s ease;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+
+            background-color: #c59b3d;
+            color: white;
+
+            transition:
+                background-color 0.2s ease,
+                transform 0.2s ease;
         }
 
         button:hover {
-            background: linear-gradient(110deg, #94671e, #b48636 55%, #95691e);
-            box-shadow: 0 14px 25px rgba(115, 78, 18, 0.24);
+            background-color: #a67c24;
             transform: translateY(-2px);
         }
 
-        button:hover::after {
-            transform: translate(3px, -54%);
-        }
-
         button:active {
-            transform: scale(0.98);
-        }
-
-        button:focus-visible,
-        a:focus-visible {
-            outline: 3px solid rgba(184, 138, 54, 0.48);
-            outline-offset: 4px;
+            transform: scale(0.97);
         }
 
         /* =========================================
-           CONTACT MESSAGE
+           PRE ORDER MESSAGE
            ========================================= */
 
         #orderMessage {
             display: none;
-            margin: 22px auto;
-            padding: 21px 18px;
-            border: 1px solid var(--line);
-            border-radius: 16px;
-            color: var(--ink-soft);
-            background: linear-gradient(135deg, #fffaf0, #f5ead3);
-            font-size: 17px;
-            line-height: 1.85;
+
+            margin: 20px auto;
+            padding: 20px;
+
+            font-size: 18px;
+            line-height: 2;
+
+            background-color: #fff8df;
+            border: 2px solid #c59b3d;
+            border-radius: 12px;
+
             overflow-wrap: anywhere;
         }
 
-        #orderMessage strong {
-            color: var(--ink);
-            font-family: Georgia, "Times New Roman", serif;
-        }
-
         .order-link {
-            color: #93681e;
+            color: #a67c24;
             font-weight: bold;
         }
 
@@ -306,21 +149,23 @@
            ========================================= */
 
         .store-info {
-            width: min(100% - 30px, 660px);
-            margin: 35px auto 48px;
-            padding: 27px 18px;
-            color: var(--ink-soft);
-            font-size: 18px;
+            max-width: 660px;
+            width: calc(100% - 30px);
+
+            margin: 35px auto 45px;
+            padding: 25px 15px;
+
+            font-size: 20px;
             line-height: 1.8;
+            color: #333;
         }
 
         .store-info strong {
-            color: var(--ink);
-            font: 600 23px/1.35 Georgia, "Times New Roman", serif;
+            font-size: 24px;
         }
 
         .store-info a {
-            color: #93681e;
+            color: #a67c24;
             font-weight: bold;
         }
 
@@ -329,12 +174,13 @@
            ========================================= */
 
         footer {
-            margin-top: 30px;
+            background-color: #222;
+            color: white;
+
             padding: 28px 15px;
-            color: rgba(255, 253, 248, 0.78);
-            background: var(--ink);
-            font-size: 14px;
-            letter-spacing: 0.04em;
+
+            margin-top: 30px;
+            font-size: 15px;
         }
 
         /* =========================================
@@ -343,68 +189,95 @@
 
         .floating-actions {
             position: fixed;
+
+            /* Keeps buttons above mobile bottom navigation */
             right: 20px;
             bottom: calc(24px + env(safe-area-inset-bottom));
+
             z-index: 9999;
+
             display: flex;
             flex-direction: column;
             align-items: flex-end;
             gap: 14px;
+
             pointer-events: none;
         }
 
         .floating-btn {
-            display: flex;
             width: 58px;
             height: 58px;
+
+            border-radius: 50%;
+
+            display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
+
             color: white;
             font-size: 27px;
+
             text-decoration: none;
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.28);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+
             -webkit-tap-highlight-color: transparent;
+
             pointer-events: auto;
         }
 
         .floating-btn:hover {
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
             transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
         }
 
         .floating-btn:active {
             transform: scale(0.92);
         }
 
+        /* Official WhatsApp green */
         .whatsapp-btn {
             background-color: #25D366;
         }
 
+        /* Phone / Dialer */
         .call-btn {
-            background-color: var(--gold);
+            background-color: #c59b3d;
         }
 
         .floating-btn i {
             line-height: 1;
         }
 
+        /* Floating labels */
         .floating-btn::after {
+            content: attr(data-label);
+
             position: absolute;
             right: 72px;
-            padding: 8px 12px;
-            border-radius: 6px;
+
+            background: #222;
             color: white;
-            background: var(--ink);
-            content: attr(data-label);
+
             font-size: 13px;
             font-weight: bold;
+            white-space: nowrap;
+
+            padding: 8px 12px;
+            border-radius: 6px;
+
             opacity: 0;
             pointer-events: none;
+
             transform: translateX(8px);
-            transition: opacity 0.2s ease, transform 0.2s ease;
-            white-space: nowrap;
+
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease;
         }
 
         .floating-btn:hover::after {
@@ -413,62 +286,54 @@
         }
 
         /* =========================================
-           RESPONSIVE BEHAVIOUR
+           MOBILE OPTIMIZATION
            ========================================= */
 
-        @media (max-width: 767px) {
-            header {
-                padding: 34px 18px 39px;
-                text-align: center;
-            }
+        @media (max-width: 600px) {
 
-            .header-inner {
-                flex-direction: column;
-                gap: 18px;
+            header {
+                padding: 32px 15px 30px;
             }
 
             h1 {
-                font-size: clamp(28px, 8vw, 42px);
-                letter-spacing: 0.06em;
+                font-size: clamp(28px, 8vw, 40px);
             }
 
             header p {
-                margin-top: 12px;
-                font-size: clamp(13px, 3.8vw, 17px);
-                letter-spacing: 0.14em;
-            }
-
-            main {
-                padding: 0 10px;
+                font-size: clamp(18px, 5vw, 24px);
+                margin-top: 20px;
             }
 
             .container {
-                margin: 28px auto 30px;
-                border-radius: 23px;
+                margin: 35px auto 30px;
+                padding: 30px 20px;
+                border-radius: 24px;
             }
 
             button {
-                margin: 14px auto;
-                padding: 18px 48px 18px 17px;
-                font-size: 17px;
+                width: 100%;
+                margin: 18px auto;
+                padding: 17px 12px;
+                font-size: 20px;
             }
 
             #orderMessage {
-                padding: 18px 13px;
-                font-size: 16px;
+                font-size: 17px;
+                padding: 18px 12px;
             }
 
             .store-info {
-                width: calc(100% - 30px);
-                margin: 28px auto 40px;
+                margin: 30px auto 40px;
                 padding: 25px 12px;
-                font-size: 17px;
+                font-size: 18px;
+                line-height: 1.8;
             }
 
             .store-info strong {
-                font-size: 21px;
+                font-size: 22px;
             }
 
+            /* Mobile floating buttons */
             .floating-actions {
                 right: 16px;
                 bottom: calc(24px + env(safe-area-inset-bottom));
@@ -490,218 +355,207 @@
             }
         }
 
+        /* Extra-small phones */
         @media (max-width: 380px) {
+
             .container {
-                width: calc(100% - 10px);
+                width: calc(100% - 20px);
                 padding: 25px 15px;
             }
 
             button {
-                font-size: 16px;
+                font-size: 18px;
             }
 
             .store-info {
-                font-size: 16px;
+                font-size: 17px;
             }
 
             .floating-actions {
                 right: 12px;
             }
         }
-
-        @media (min-width: 768px) {
-            .site-shell {
-                animation: interface-in 0.7s ease both;
-            }
-        }
-
-        @keyframes interface-in {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                scroll-behavior: auto !important;
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
     </style>
 </head>
 
-<body class="intro-active">
 
-    <!-- Intro video. Place your video at intro-video.mp4 beside this file. -->
-    <div class="mobile-intro" id="mobileIntro" aria-hidden="true">
-        <video class="intro-video" id="introVideo" muted playsinline preload="metadata">
-            <source src="hointro.mp4" type="video/mp4">
-        </video>
-    </div>
+<body>
 
-    <div class="site-shell">
-        <!-- Header -->
-        <header>
-            <div class="header-inner">
-                <div class="brand-copy">
-                    <h1>H.O. JEWELLERS</h1>
-                    <p>Jewellery • Gold • Silver</p>
-                </div>
-            </div>
-        </header>
+    <!-- Header -->
+    <header>
 
-        <main>
-            <!-- Main Container -->
-            <div class="container">
+        <h1>H.O. JEWELLERS</h1>
 
-                <!-- Current Rates -->
-                <a href="https://hojewellersltd.github.io/Rates/">
-                    <button>
-                        Current Rates
-                    </button>
-                </a>
+        <p>Jewellery • Gold • Silver</p>
 
-                <!-- Products -->
-                <a href="https://hojewellersltd.github.io/Products/">
-                    <button>
-                        Products
-                    </button>
-                </a>
+    </header>
 
-                <!-- Contact Us -->
-                <button onclick="showOrder()">
-                    Contact Us
-                </button>
 
-                <!-- Contact Message -->
-                <div id="orderMessage">
-                    <strong>Contact us at:</strong>
-                    <br>
-                    +91 9798762719
-                    <br><br>
-                    <strong>Mail us at:</strong>
-                    <br>
-                    nishantburman61@gmail.com
-                    <br><br>
-                    <strong>WhatsApp Chat:</strong>
-                    <br>
-                    <a class="order-link"
-                        href="https://wa.me/message/TTTRR6SQLQDQF1"
-                        target="_blank"
-                        rel="noopener">
-                        Chat on WhatsApp
-                    </a>
-                </div>
+    <!-- Main Container -->
+    <div class="container">
 
-                <!-- About Us -->
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLScWa1f2xkvY7ZIMOlZ3C9_flqlxsmN_KiRiZjDSsFTtVFSO0g/viewform?usp=publish-editor"
-                    target="_blank"
-                    rel="noopener">
-                    <button>
-                        About Us
-                    </button>
-                </a>
+        <!-- Current Rates -->
+        <a href="https://hojewellersltd.github.io/Rates/">
 
-            </div>
-        </main>
+            <button>
+                Current Rates
+            </button>
 
-        <!-- Offline Store Information -->
-        <div class="store-info">
-            <strong>For more clarity, visit our offline store at:</strong>
-            <br><br>
-            Main Road, Near Bank Of Baroda, Gola, Ramgarh
+        </a>
+
+
+        <!-- Products -->
+        <a href="https://hojewellersltd.github.io/Products/">
+
+            <button>
+                Products
+            </button>
+
+        </a>
+
+
+        <!-- Pre Orders -->
+        <button onclick="showOrder()">
+            Pre Orders
+        </button>
+
+
+        <!-- Pre Order Message -->
+        <div id="orderMessage">
+
+            <strong>Contact us at:</strong>
             <br>
-            Jharkhand 829110
-            <p>
-                Download Android App?
-                <br>
-                <a href="https://hojewellersltd.github.io/APKdownload/"
-                    target="_blank"
-                    rel="noopener">
-                    click Here
-                </a>.
-            </p>
-        </div>
 
-        <!-- Footer -->
-        <footer>
-            &copy; 2026 H.O. Jewellers, All Rights Reserved.
-        </footer>
+            +91 9798762719
 
-        <!-- Floating WhatsApp + Call Buttons -->
-        <div class="floating-actions">
+            <br><br>
 
-            <!-- WhatsApp -->
-            <a class="floating-btn whatsapp-btn"
+            <strong>Mail us at:</strong>
+            <br>
+
+            nishantburman61@gmail.com
+
+            <br><br>
+
+            <strong>WhatsApp Chat:</strong>
+            <br>
+
+            <a class="order-link"
                 href="https://wa.me/message/TTTRR6SQLQDQF1"
                 target="_blank"
-                rel="noopener"
-                aria-label="Chat on WhatsApp"
-                data-label="Chat on WhatsApp">
-                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-            </a>
+                rel="noopener">
 
-            <!-- Android Dialer -->
-            <a class="floating-btn call-btn"
-                href="tel:+919798762719"
-                aria-label="Call H.O. Jewellers"
-                data-label="Call us">
-                <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                Chat on WhatsApp
+
             </a>
 
         </div>
+
+
+        <!-- Contact Info -->
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScWa1f2xkvY7ZIMOlZ3C9_flqlxsmN_KiRiZjDSsFTtVFSO0g/viewform?usp=publish-editor"
+            target="_blank"
+            rel="noopener">
+
+            <button>
+                Contact Info
+            </button>
+
+        </a>
+
     </div>
 
+
+    <!-- Offline Store Information -->
+    <div class="store-info">
+
+        <strong>For more clarity, visit our offline store at:</strong>
+
+        <br><br>
+
+        Main Road, Near Bank Of Baroda, Gola, Ramgarh
+
+        <br>
+
+        Jharkhand 829110
+
+        <p>
+            Download Android App?
+            <br>
+
+            <a href="https://hojewellersltd.github.io/APKdownload/"
+                target="_blank"
+                rel="noopener">
+
+                click Here
+
+            </a>.
+        </p>
+
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+
+        &copy; 2026 H.O. Jewellers, All Rights Reserved.
+
+    </footer>
+
+
+    <!-- =========================================
+         FLOATING WHATSAPP + CALL BUTTONS
+         ========================================= -->
+
+    <div class="floating-actions">
+
+        <!-- WhatsApp -->
+        <a class="floating-btn whatsapp-btn"
+            href="https://wa.me/message/TTTRR6SQLQDQF1"
+            target="_blank"
+            rel="noopener"
+            aria-label="Chat on WhatsApp"
+            data-label="Chat on WhatsApp">
+
+            <i class="fa-brands fa-whatsapp"
+                aria-hidden="true"></i>
+
+        </a>
+
+
+        <!-- Android Dialer -->
+        <a class="floating-btn call-btn"
+            href="tel:+919798762719"
+            aria-label="Call H.O. Jewellers"
+            data-label="Call us">
+
+            <i class="fa-solid fa-phone"
+                aria-hidden="true"></i>
+
+        </a>
+
+    </div>
+
+
+    <!-- JavaScript -->
     <script>
+
         function showOrder() {
+
             const message = document.getElementById("orderMessage");
 
             if (message.style.display === "block") {
+
                 message.style.display = "none";
+
             } else {
+
                 message.style.display = "block";
+
             }
+
         }
 
-        (function initialiseIntroVideo() {
-            const mobileIntro = document.getElementById("mobileIntro");
-            const introVideo = document.getElementById("introVideo");
-            let fallbackTimer;
-
-            function openMainInterface() {
-                window.clearTimeout(fallbackTimer);
-                document.body.classList.remove("intro-active");
-                document.body.classList.add("intro-complete");
-                mobileIntro.setAttribute("aria-hidden", "true");
-            }
-
-            introVideo.addEventListener("ended", openMainInterface, { once: true });
-            introVideo.addEventListener("error", openMainInterface, { once: true });
-            introVideo.addEventListener("loadeddata", function () {
-                window.clearTimeout(fallbackTimer);
-            }, { once: true });
-
-            // If the video file is missing or the host cannot serve it, never trap the visitor on black.
-            fallbackTimer = window.setTimeout(openMainInterface, 4000);
-
-            const playRequest = introVideo.play();
-            if (playRequest && typeof playRequest.catch === "function") {
-                playRequest.catch(function () {
-                    // A blocked or unavailable video should fall back to the main interface.
-                    openMainInterface();
-                });
-            }
-        }());
     </script>
 
 </body>
