@@ -42,7 +42,7 @@ const SETTINGS = {
 const money=n=>'₹'+Math.round(n).toLocaleString('en-IN');
 const isGold=name=>name.startsWith('Gold');
 const rateCards=document.getElementById('rateCards');
-Object.entries(SETTINGS.ratesPer10g).forEach(([name,rate],i)=>{rateCards.innerHTML+=`<article class="rate-card"><div class="rate-kicker">${['Purest gold','Classic gold','Traditional gold','Everyday gold','Shine of silver'][i]}</div><h3>${name}</h3><div class="rate-value">${money(rate)}<small> / 10g</small></div></article>`});
+Object.entries(SETTINGS.ratesPer10g).forEach(([name,rate],i)=>{rateCards.innerHTML+=`<article class="rate-card"><div class="rate-kicker">${['Purest gold','Classic gold','Traditional gold','Shine of silver'][i]}</div><h3>${name}</h3><div class="rate-value">${money(rate)}<small> / 10g</small></div></article>`});
 document.getElementById('updatedText').textContent='Last updated: '+SETTINGS.lastUpdated+' · Update the SETTINGS block in this file each day.';
 const metal=document.getElementById('metal');Object.keys(SETTINGS.ratesPer10g).forEach(name=>metal.add(new Option(name,name)));
 const calculator=document.getElementById('calculator');document.getElementById('openCalculator').addEventListener('click',()=>{calculator.classList.toggle('open');if(calculator.classList.contains('open'))calculator.scrollIntoView({behavior:'smooth',block:'start'})});
